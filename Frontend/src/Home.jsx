@@ -30,42 +30,42 @@ function Home() {
                         <span></span><span></span><span></span>
                     </button>
                     <div id="primary-navigation" className={`nav-content${menuOpen ? ' is-open' : ''}`}>
-                    <ul id="list1">
-                        <li class="l1" id="drrop">Explore
-                            <div id="cityNames">
-                                <div class="city"><input type="radio" />Awards</div>
-                                <div class="city"> <input type="radio" /> By Category</div>
-                                <div class="city"> <input type="radio" /> By Technology</div>
-                                <div class="city"> <input type="radio" /> Category</div>
-                                <div class="city" style={{ borderStyle: "none" }}> <input type="radio" /> Blog</div>
+                        <ul id="list1">
+                            <li class="l1" id="drrop">Explore
+                                <div id="cityNames">
+                                    <div class="city"><input type="radio" />Awards</div>
+                                    <div class="city"> <input type="radio" /> By Category</div>
+                                    <div class="city"> <input type="radio" /> By Technology</div>
+                                    <div class="city"> <input type="radio" /> Category</div>
+                                    <div class="city" style={{ borderStyle: "none" }}> <input type="radio" /> Blog</div>
+                                </div>
+                            </li>
+                            <li class="l1">Direcotry</li>
+                            <li class="l1">Academy <span id="new">New</span></li>
+                            <li class="l1">Jobs</li>
+                            <li class="l1">Market</li>
+                        </ul>
+                        <div class="searchbar">
+                            {/* <!-- <i class="fa fa-search"></i> --> */}
+                            <input type="search" placeholder="Search by Inspiration" id="search" />
+                        </div>
+                        {userName ? (
+                            <div className="login_singup signed-in-user">
+                                <span className="user-initial" aria-label={`${userName}'s account`} title={userName}>
+                                    {userName.trim().charAt(0).toUpperCase()}
+                                </span>
+                                <button className="logout-button" type="button" onClick={handleLogout}>Logout</button>
                             </div>
-                        </li>
-                        <li class="l1">Direcotry</li>
-                        <li class="l1">Academy <span id="new">New</span></li>
-                        <li class="l1">Jobs</li>
-                        <li class="l1">Market</li>
-                    </ul>
-                    <div class="searchbar">
-                        {/* <!-- <i class="fa fa-search"></i> --> */}
-                        <input type="search" placeholder="Search by Inspiration" id="search" />
-                    </div>
-                    {userName ? (
-                        <div className="login_singup signed-in-user">
-                            <span className="user-initial" aria-label={`${userName}'s account`} title={userName}>
-                                {userName.trim().charAt(0).toUpperCase()}
-                            </span>
-                            <button className="logout-button" type="button" onClick={handleLogout}>Logout</button>
+                        ) : (
+                            <div className="login_singup">
+                                <p className="login" id="login" onClick={() => navigate("/login")}>Login</p>
+                                <p className="login" id="signUp" onClick={() => navigate("/signup")}>Sign Up</p>
+                            </div>
+                        )}
+                        <div class="button_last">
+                            <button id="first_button">Be Pro</button>
+                            <button id="second_button">Submit Website</button>
                         </div>
-                    ) : (
-                        <div className="login_singup">
-                            <p className="login" id="login" onClick={() => navigate("/login")}>Login</p>
-                            <p className="login" id="signUp" onClick={() => navigate("/signup")}>Sign Up</p>
-                        </div>
-                    )}
-                    <div class="button_last">
-                        <button id="first_button">Be Pro</button>
-                        <button id="second_button">Submit Website</button>
-                    </div>
                     </div>
                 </nav>
             </header>

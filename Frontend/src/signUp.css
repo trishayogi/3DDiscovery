@@ -157,23 +157,201 @@
 }
 
 @media (max-width: 900px) {
-    .signup-page { padding: 24px; }
-    .signup-page #outerDiv { width: min(100%, 560px); height: auto; margin: 16px auto; flex-direction: column; align-items: center; }
-    .signup-page #form { width: 100%; max-width: 460px; margin: 0; padding: 0; }
-    .signup-page #image { display: none; }
-    .signup-page .input, .signup-page .signup-password-field { width: 100%; }
-    .signup-page #name { gap: 14px; }
-    .signup-page #name label { flex: 1; min-width: 0; }
-    .signup-page .input1 { width: 100%; box-sizing: border-box; }
-    .signup-page #second { margin-left: 0; }
-    .signup-page #signUp { display: block; width: min(100%, 320px); margin: 12px auto; }
-    .signup-page #Google { display: block; margin: 12px auto; }
+    .signup-page {
+        padding: 24px;
+    }
+
+    .signup-page #outerDiv {
+        width: min(100%, 560px);
+        height: auto;
+        margin: 16px auto;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .signup-page #form {
+        width: 100%;
+        max-width: 460px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .signup-page #image {
+        display: none;
+    }
+
+    .signup-page .input,
+    .signup-page .signup-password-field {
+        width: 100%;
+    }
+
+    .signup-page #name {
+        gap: 14px;
+    }
+
+    .signup-page #name label {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .signup-page .input1 {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .signup-page #second {
+        margin-left: 0;
+    }
+
+    .signup-page #signUp {
+        display: block;
+        width: min(100%, 320px);
+        margin: 12px auto;
+    }
+
+    .signup-page #Google {
+        display: block;
+        margin: 12px auto;
+    }
 }
 
 @media (max-width: 480px) {
-    .signup-page { padding: 16px; }
-    .signup-page #outerDiv { margin: 8px auto; }
-    .signup-page #name { gap: 10px; }
-    .signup-page h1 { font-size: 25px; }
-    .signup-page .input, .signup-page .input1 { height: 42px; }
+    .signup-page {
+        padding: 16px;
+    }
+
+    .signup-page #outerDiv {
+        margin: 8px auto;
+    }
+
+    .signup-page #name {
+        gap: 10px;
+    }
+
+    .signup-page h1 {
+        font-size: 25px;
+    }
+
+    .signup-page .input,
+    .signup-page .input1 {
+        height: 42px;
+    }
+}
+
+/* Center signup content and use consistent field dimensions */
+.signup-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: clamp(16px, 4vw, 40px);
+}
+
+.signup-page #outerDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(24px, 5vw, 64px);
+    width: min(100%, 1100px);
+    height: auto;
+    margin: 0 auto;
+}
+
+.signup-page #form {
+    flex: 1 1 440px;
+    width: min(100%, 460px);
+    margin: 0;
+    padding: 0;
+}
+
+.signup-page #name {
+    display: flex;
+    gap: 14px;
+}
+
+.signup-page #name label {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.signup-page #second {
+    margin-left: 0;
+}
+
+.signup-page .input,
+.signup-page .input1,
+.signup-page .signup-password-field {
+    width: 100%;
+    min-width: 0;
+}
+
+.signup-page .input,
+.signup-page .input1,
+.signup-page .signup-password-field .input {
+    height: 48px;
+    box-sizing: border-box;
+}
+
+.signup-page .signup-password-field .input {
+    padding-right: 42px;
+}
+
+.signup-page #image {
+    flex: 1 1 45%;
+    width: auto;
+    margin: 0;
+}
+
+.signup-page #sidebar {
+    display: block;
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
+.signup-page #signUp {
+    display: block;
+    width: min(100%, 320px);
+    margin: 12px auto;
+}
+
+.signup-page #Google {
+    display: block;
+    margin: 12px auto;
+}
+
+@media (min-width: 701px) and (max-width: 900px) {
+    .signup-page #image {
+        display: block;
+        width: 100%;
+        max-width: 550px;
+        margin: 24px auto 0;
+    }
+}
+
+@media (max-width: 700px) {
+    .signup-page {
+        align-items: flex-start;
+        padding: 24px 16px;
+    }
+
+    .signup-page #outerDiv {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .signup-page #form {
+        flex: 1 1 auto;
+        width: min(100%, 460px);
+    }
+
+    .signup-page #image {
+        display: none;
+    }
+}
+
+@media (max-width: 420px) {
+    .signup-page #name {
+        gap: 10px;
+    }
 }
