@@ -355,3 +355,56 @@
         gap: 10px;
     }
 }
+
+/* Signup fields, helper text, and responsive illustration */
+.signup-page label {
+    display: block;
+    line-height: 1.65;
+    margin-bottom: 12px;
+}
+
+.signup-page label>.input,
+.signup-page label>.input1 {
+    margin-top: 6px;
+}
+
+.signup-page .signup-password-field {
+    margin-top: 6px;
+}
+
+.signup-page #html {
+    color: #252525;
+}
+
+.signup-page #html a {
+    color: #b45309 !important;
+}
+
+.signup-page #image {
+    min-width: 0;
+    max-width: 520px;
+}
+
+.signup-page #sidebar {
+    width: 100%;
+    height: auto;
+    max-height: 540px;
+    aspect-ratio: 0.92;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 20px;
+}
+
+@media (min-width: 701px) and (max-width: 900px) {
+    .signup-page #sidebar {
+        max-height: 420px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .signup-page #image,
+    .signup-page #sidebar {
+        display: none;
+    }
+}
