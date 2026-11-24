@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 function Home() {
     const navigate = useNavigate()
     const [userName, setUserName] = useState(() => sessionStorage.getItem('userName') || '')
+    const [menuOpen, setMenuOpen] = useState(false)
 
     function handleLogout() {
         sessionStorage.removeItem('token')
@@ -18,6 +19,17 @@ function Home() {
                 </div>
                 <nav class="header">
                     <p class="logo">W.</p>
+                    <button
+                        className="mobile-menu-toggle"
+                        type="button"
+                        aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                        aria-expanded={menuOpen}
+                        aria-controls="primary-navigation"
+                        onClick={() => setMenuOpen((open) => !open)}
+                    >
+                        <span></span><span></span><span></span>
+                    </button>
+                    <div id="primary-navigation" className={`nav-content${menuOpen ? ' is-open' : ''}`}>
                     <ul id="list1">
                         <li class="l1" id="drrop">Explore
                             <div id="cityNames">
@@ -53,6 +65,7 @@ function Home() {
                     <div class="button_last">
                         <button id="first_button">Be Pro</button>
                         <button id="second_button">Submit Website</button>
+                    </div>
                     </div>
                 </nav>
             </header>
@@ -286,3 +299,4 @@ function Home() {
 }
 
 export default Home
+

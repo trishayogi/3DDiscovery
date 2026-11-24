@@ -134,3 +134,21 @@
         border-radius: 20px;
     }
 }
+
+@media (max-width: 900px) {
+    .login-page { padding: 24px; }
+    .login-page #outerDiv { width: min(100%, 700px); margin: 24px auto; flex-direction: column; align-items: center; }
+    .login-page #form { width: min(100%, 420px); margin: 0; }
+    .login-page #text, .login-page .password-field { width: 100%; }
+    .login-page #image { display: none; }
+}
+
+@media (max-width: 480px) {
+    .login-page { padding: 16px; }
+    .login-page #outerDiv { margin: 16px auto; }
+    .login-page #form { width: 100%; }
+    .login-page h2 { margin: 16px 0 28px; }
+    .login-page #text { height: 48px; margin-bottom: 16px; }
+    .login-page .password-field { margin-bottom: 12px; }
+    .login-page span { margin: 8px 4px 28px; }
+}
