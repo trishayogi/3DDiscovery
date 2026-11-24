@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 const crypto = require('crypto')
 const User = require('../models/user')
 const { sendPasswordResetEmail } = require('../config/mailer')
+const authmiddelware = require("../Authmiddelware/Authmiddelware")
 
 const PASSWORD_RESET_MESSAGE = 'If an account exists for that email, a password reset link has been sent.'
 
@@ -88,7 +89,8 @@ router.post("/login", async (req, res) => {
         res.json({
             success: true,
             message: "login successfully",
-            token
+            token,
+            user: { id: user._id, name: user.name, email: user.email }
         })
     } catch (error) {
         res.status(500).json({
@@ -184,6 +186,118 @@ router.post("/reset-password", async (req, res) => {
         })
     }
 })
+//profile
+router.get("/profile", authmiddelware, async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select("-password")
+        if (!user) {
+            res.status(404).json(
+                {
+                    message: "User Not Found !"
+                })
+        }
+        res.status(201).json({
+            message: "User Fetch Successfull !",
+            user
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+})
 
+// complete update 
+router.put("/profile", authmiddelware, async (req, res) => {
 
+    try {
+        const { name, email } = req.body
+        const user = await User.findByIdAndUpdate(
+            req.user.id,
+            { name, email },
+            {
+                new: true,
+                runValidators: true
+            }
+        ).select("-password")
+        if (!user) {
+            res.status(404).json({
+                message: "user not found"
+            })
+        }
+        res.status(201).json({
+            success: true,
+            message: "Profile Updated SuccessFully !"
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+}
+);
+
+//udpate selected field 
+router.patch("/profile", authmiddelware, async (req, res) => {
+    try {
+        const allowedFeilds = ["name", "email"]
+        const updates = {}
+        for (const field of allowedFeilds) {
+            if (req.body[field] !== undefined) {
+                updates[field] = req.body[field];
+            }
+        }
+        if (Object.keys(updates).length === 0) {
+            return res.status(400).json({
+                message: "No vaild field Provide"
+            })
+        }
+        const user = await User.findByIdAndUpdate(req.user.id,
+            { $set: updates },
+            {
+                new: true,
+                runValidators: true
+            }
+        ).select("-password")
+        if (!user) {
+            return res.status(404).json({
+                message: "User Not Found !"
+            })
+        }
+
+        res.status(201).json({
+            message: "Profile Update Successfully !!"
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+
+})
+//delete profile
+router.delete("/profile", authmiddelware, async (req, res) => {
+    try {
+        const user = await User.findByIdAndDelete(req.user.id)
+        if (!user) {
+            res.status(404).json({
+                message: "User Not Found !"
+            })
+        }
+        res.status(201).json({
+            message: "Account deleted Succesfully"
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+})
+
+// logout 
+router.post("/logout", authmiddelware, async (req, res) => {
+    res.status(201).json({
+        message: "LogOut successfull ! please remove your token "
+    })
+})
 module.exports = router;

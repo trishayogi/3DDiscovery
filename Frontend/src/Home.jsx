@@ -1,7 +1,15 @@
 import "./App.css"
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 function Home() {
     const navigate = useNavigate()
+    const [userName, setUserName] = useState(() => sessionStorage.getItem('userName') || '')
+
+    function handleLogout() {
+        sessionStorage.removeItem('token')
+        sessionStorage.removeItem('userName')
+        setUserName('')
+    }
     return (
         <div className="home-page">
             <header>
@@ -29,10 +37,19 @@ function Home() {
                         {/* <!-- <i class="fa fa-search"></i> --> */}
                         <input type="search" placeholder="Search by Inspiration" id="search" />
                     </div>
-                    <div class="login_singup">
-                        <p class="login" id="login" onClick={() => navigate("/login")}>Login</p>
-                        <p class="login" id="signUp" onClick={() => navigate("/signup")}>Sign Up</p>
-                    </div>
+                    {userName ? (
+                        <div className="login_singup signed-in-user">
+                            <span className="user-initial" aria-label={`${userName}'s account`} title={userName}>
+                                {userName.trim().charAt(0).toUpperCase()}
+                            </span>
+                            <button className="logout-button" type="button" onClick={handleLogout}>Logout</button>
+                        </div>
+                    ) : (
+                        <div className="login_singup">
+                            <p className="login" id="login" onClick={() => navigate("/login")}>Login</p>
+                            <p className="login" id="signUp" onClick={() => navigate("/signup")}>Sign Up</p>
+                        </div>
+                    )}
                     <div class="button_last">
                         <button id="first_button">Be Pro</button>
                         <button id="second_button">Submit Website</button>
