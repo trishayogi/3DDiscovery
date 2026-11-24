@@ -5,6 +5,7 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [react()],
   preview: {
+    allowedHosts: ['threeddiscovery-4.onrender.com'],
     host: '0.0.0.0',
     port: Number(process.env.PORT) || 4173,
     strictPort: true,
