@@ -9,8 +9,8 @@ export default defineConfig({
   },
   preview: {
     allowedHosts: [
-      'threeddiscovery-4.onrender.com',
-      'threeddiscovery-6.onrender.com',
+
+      'threeddiscovery-frontend.onrender.com',
     ],
     host: '0.0.0.0',
     port: Number(process.env.PORT) || 4173,
