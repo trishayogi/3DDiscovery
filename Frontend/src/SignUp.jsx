@@ -62,8 +62,18 @@ function SignUp() {
     return (
         <div className="signup-page">
             <div id="outerDiv">
+                <aside className="signup-welcome">
+                    <span className="welcome-orb welcome-orb-one" aria-hidden="true"></span>
+                    <span className="welcome-orb welcome-orb-two" aria-hidden="true"></span>
+                    <span className="welcome-orb welcome-orb-three" aria-hidden="true"></span>
+                    <span className="welcome-orb welcome-orb-four" aria-hidden="true"></span>
+                    <div className="welcome-copy">
+                        <h1>WELCOME TO CREATE AN ACCOUNT</h1>
+                        {/* <p></p> */}
+                    </div>
+                </aside>
                 <form id="form" onSubmit={handleSubmit}>
-                    <h1>Create An Account!</h1>
+                    {/* <h1>CREATE AN ACCOUNT.</h1> */}
                     <div id="name">
                         <label className="required">
                             FirstName<span className="star">*</span> <br />
@@ -111,11 +121,6 @@ function SignUp() {
                     </p>
 
                 </form>
-                <div id="image">
-                    <img id="sidebar"
-                        src="https://assets.awwwards.com/awards/element/2026/10/6abe2fc746bc3752051822.jpg"
-                        alt="No Image" />
-                </div>
             </div>
         </div>
     )
