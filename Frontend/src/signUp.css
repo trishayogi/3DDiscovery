@@ -31,7 +31,7 @@
         width: 200px;
         border-style: none;
         padding: 7px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         border-radius: 6px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
@@ -41,7 +41,7 @@
         width: 400px;
         border-style: none;
         padding: 7px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         border-radius: 6px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
@@ -129,16 +129,7 @@
         margin: 8px;
     }
 
-    #Google {
-        height: 40px;
-        width: 100px;
-        border-style: none;
-        padding: 10px;
-        border-radius: 15px;
-        margin-left: 150px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        background-color: white;
-    }
+
 
     #sidebar {
         height: 500px;
@@ -407,4 +398,280 @@
     .signup-page #sidebar {
         display: none;
     }
+}
+
+/* Keep the signup layout within the viewport while preserving both form and image */
+.signup-page {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+    padding: clamp(10px, 2.5vh, 24px) clamp(14px, 4vw, 40px);
+}
+
+.signup-page #outerDiv {
+    height: 100%;
+    max-height: 100%;
+    min-height: 0;
+    gap: clamp(18px, 4vw, 52px);
+}
+
+.signup-page #form {
+    min-width: 0;
+    max-height: 100%;
+}
+
+.signup-page #form h1 {
+    margin: 0 0 8px;
+    font-size: clamp(23px, 2.5vw, 30px);
+}
+
+.signup-page label {
+    line-height: 1.3;
+    margin-bottom: 6px;
+}
+
+.signup-page .input,
+.signup-page .input1,
+.signup-page .signup-password-field .input {
+    height: 40px;
+}
+
+.signup-page label>.input,
+.signup-page label>.input1,
+.signup-page .signup-password-field {
+    margin-top: 3px;
+}
+
+.signup-page .input,
+.signup-page .input1 {
+    margin-bottom: 0;
+}
+
+.signup-page #signUp {
+    height: 40px;
+    margin: 6px auto 4px;
+    padding: 8px 14px;
+}
+
+.signup-page #html {
+    margin: 2px 0 0;
+    line-height: 1.3;
+}
+
+.signup-page #image {
+    display: block;
+    flex: 1 1 45%;
+    width: min(45%, 520px);
+    max-height: 100%;
+    margin: 0;
+}
+
+.signup-page #sidebar {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: min(75vh, 540px);
+    aspect-ratio: 0.92;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+@media (max-width: 700px) {
+    .signup-page {
+        align-items: center;
+        padding: 10px 14px;
+    }
+
+    .signup-page #outerDiv {
+        justify-content: center;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .signup-page #form {
+        flex: 1 1 auto;
+        width: min(100%, 460px);
+    }
+
+    .signup-page #form h1 {
+        font-size: 23px;
+        margin-bottom: 6px;
+    }
+
+    .signup-page #image,
+    .signup-page #sidebar {
+        display: none;
+    }
+}
+
+@media (max-height: 620px) {
+    .signup-page {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    .signup-page #form h1 {
+        font-size: 21px;
+        margin-bottom: 4px;
+    }
+
+    .signup-page label {
+        line-height: 1.15;
+        margin-bottom: 3px;
+    }
+
+    .signup-page .input,
+    .signup-page .input1,
+    .signup-page .signup-password-field .input {
+        height: 34px;
+    }
+
+    .signup-page label>.input,
+    .signup-page label>.input1,
+    .signup-page .signup-password-field {
+        margin-top: 1px;
+    }
+
+    .signup-page #signUp {
+        height: 36px;
+        margin-top: 3px;
+    }
+}
+
+/* Align signup heading and fields, with a clear label-to-input gap */
+.signup-page #form {
+    padding-inline: 30px;
+}
+
+.signup-page #form h1 {
+    margin: 0 0 14px;
+    text-align: left;
+    font-size: 30px;
+}
+
+.signup-page label>.input,
+.signup-page label>.input1,
+.signup-page .signup-password-field {
+    margin-top: clamp(5px, 0.8vh, 8px);
+}
+
+@media (max-width: 700px) {
+    .signup-page #form {
+        padding-inline: 16px;
+    }
+
+    .signup-page #form h1 {
+        font-size: 26px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 420px) {
+    .signup-page #form {
+        padding-inline: 10px;
+    }
+
+    .signup-page #form h1 {
+        font-size: 24px;
+    }
+}
+
+@media (max-height: 620px) {
+    .signup-page #form h1 {
+        margin-bottom: 4px;
+        font-size: 23px;
+    }
+
+    .signup-page label>.input,
+    .signup-page label>.input1,
+    .signup-page .signup-password-field {
+        margin-top: 2px;
+    }
+}
+
+/* Add breathing room after every signup input and below the form */
+.signup-page label>.input,
+.signup-page label>.input1,
+.signup-page .signup-password-field {
+    margin-bottom: 10px;
+}
+
+.signup-page #form {
+    padding-bottom: 30px;
+}
+
+@media (max-width: 700px) {
+
+    .signup-page label>.input,
+    .signup-page label>.input1,
+    .signup-page .signup-password-field {
+        margin-bottom: 8px;
+    }
+
+    .signup-page #form {
+        padding-bottom: 16px;
+    }
+}
+
+@media (max-height: 620px) {
+
+    .signup-page label>.input,
+    .signup-page label>.input1,
+    .signup-page .signup-password-field {
+        margin-bottom: 4px;
+    }
+
+    .signup-page #form {
+        padding-bottom: 8px;
+    }
+}
+
+.signup-page #form h1 {
+    margin: 0 0 12px;
+    text-align: center;
+    font-size: 32px;
+    line-height: 1.15;
+}
+
+@media (max-width: 700px) {
+    .signup-page #form h1 {
+        font-size: 29px;
+        margin-bottom: 8px;
+    }
+}
+
+@media (max-width: 420px) {
+    .signup-page #form h1 {
+        font-size: 27px;
+    }
+}
+
+@media (max-height: 620px) {
+    .signup-page #form h1 {
+        font-size: 26px;
+        margin-bottom: 4px;
+    }
+}
+
+/* Increase separation between signup field groups */
+.signup-page label {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 700px) {
+    .signup-page label {
+        margin-bottom: 7px;
+    }
+}
+
+@media (max-height: 620px) {
+    .signup-page label {
+        margin-bottom: 4px;
+    }
+}
+
+.signup-page #form h1 {
+    margin-bottom: 30px;
 }
