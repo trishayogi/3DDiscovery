@@ -675,3 +675,64 @@
 .signup-page #form h1 {
     margin-bottom: 30px;
 }
+/* Give each signup label a clear, consistent gap before its field */
+.signup-page label > .input,
+.signup-page label > .input1,
+.signup-page .signup-password-field {
+    display: block;
+    margin-top: 10px;
+}
+
+/* On desktop, stretch the illustration to the same height as the form */
+@media (min-width: 901px) {
+    .signup-page #outerDiv {
+        align-items: stretch;
+    }
+    .signup-page #form {
+        height: 100%;
+        align-self: stretch;
+        justify-content: center;
+    }
+    .signup-page #image {
+        align-self: stretch;
+        display: flex;
+        height: 100%;
+        max-height: none;
+    }
+    .signup-page #sidebar {
+        height: 100%;
+        max-height: none;
+        aspect-ratio: auto;
+        object-fit: cover;
+    }
+}
+
+@media (min-width: 701px) and (max-width: 900px) {
+    .signup-page #outerDiv {
+        height: auto;
+        align-items: center;
+    }
+    .signup-page #form { height: auto; }
+    .signup-page #image {
+        display: block;
+        height: auto;
+        max-height: 260px;
+    }
+    .signup-page #sidebar {
+        height: 260px;
+        max-height: 260px;
+        aspect-ratio: auto;
+    }
+}
+
+@media (max-width: 700px) {
+    .signup-page label > .input,
+    .signup-page label > .input1,
+    .signup-page .signup-password-field { margin-top: 8px; }
+}
+@media (max-height: 620px) {
+    .signup-page label > .input,
+    .signup-page label > .input1,
+    .signup-page .signup-password-field { margin-top: 4px; }
+    .signup-page #image { display: none; }
+}
