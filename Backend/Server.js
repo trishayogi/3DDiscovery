@@ -14,7 +14,7 @@ app.get("/health", (_req, res) => {
 // Database connection
 connectDB();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 const userRoutes = require("./routes/userRotue")
 app.use("/api/users", userRoutes);
 
