@@ -8,7 +8,7 @@
 - **Backend:** Node.js, Express 5
 - **Database:** MongoDB with Mongoose
 - **Authentication:** JWT and bcryptjs
-- **Password reset email:** Nodemailer / SMTP
+- **Password reset email:** Resend API over HTTPS (with SMTP fallback)
 - **Deployment:** Render (configuration provided in `render.yaml`)
 
 ## Project structure
@@ -49,7 +49,9 @@ Create `Backend/.env` from the example:
 Copy-Item Backend/.env.example Backend/.env
 ```
 
-Set at least `MONGODB_URI` and `JWT_SECRET` in `Backend/.env`. To enable password reset emails, also set the SMTP values and `FRONTEND_URL` (for local development, use `http://localhost:5173`).
+Set at least `MONGODB_URI` and `JWT_SECRET` in `Backend/.env`. To enable password reset emails, set `FRONTEND_URL` (for local development, use `http://localhost:5173`) and either the Resend API settings or SMTP settings.
+
+For Render, configure `RESEND_API_KEY` and `EMAIL_FROM` instead of SMTP. Verify the sender domain with Resend and use a sender address on that domain. The app calls Resend over HTTPS, avoiding SMTP connection timeouts. SMTP remains available as a fallback for environments that allow outbound SMTP.
 
 Then start the API:
 
@@ -123,13 +125,15 @@ For protected endpoints, send the login token as `Authorization: Bearer <token>`
 | `MONGODB_URI` | MongoDB connection string |
 | `JWT_SECRET` | Secret used to sign login tokens |
 | `FRONTEND_URL` | Frontend origin used to build password reset links |
-| `SMTP_HOST` | SMTP server hostname |
-| `SMTP_PORT` | SMTP server port (defaults to `587`) |
-| `SMTP_SECURE` | Use implicit TLS (`true` or `false`) |
-| `SMTP_USER` | SMTP username |
-| `SMTP_PASS` | SMTP password or provider app password |
-| `SMTP_FROM` | Sender email address (defaults to `SMTP_USER`) |
-| `SMTP_FROM_NAME` | Sender display name |
+| `RESEND_API_KEY` | Resend API key; when set, email is sent over HTTPS |
+| `EMAIL_FROM` | Sender address verified with Resend (required with `RESEND_API_KEY`) |
+| `SMTP_HOST` | Optional SMTP fallback server hostname |
+| `SMTP_PORT` | Optional SMTP fallback port (defaults to `587`) |
+| `SMTP_SECURE` | Optional SMTP fallback implicit TLS (`true` or `false`) |
+| `SMTP_USER` | Optional SMTP fallback username |
+| `SMTP_PASS` | Optional SMTP fallback password or provider app password |
+| `SMTP_FROM` | Optional SMTP fallback sender address (defaults to `SMTP_USER`) |
+| `SMTP_FROM_NAME` | Optional SMTP fallback sender display name |
 
 ### Frontend (`Frontend/.env`)
 

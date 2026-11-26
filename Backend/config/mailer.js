@@ -12,8 +12,8 @@ const transporter = nodemailer.createTransport({
 
 async function sendPasswordResetEmail(email, token) {
     const frontendUrl = process.env.FRONTEND_URL;
-    if (!frontendUrl || !process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
-        throw new Error('SMTP_HOST, SMTP_USER, SMTP_PASS, and FRONTEND_URL must be configured')
+    if (!frontendUrl) {
+        throw new Error('FRONTEND_URL must be configured')
     }
 
     const resetUrl = `${frontendUrl.replace(/\/+$/, '')}/resetpassword?token=${encodeURIComponent(token)}`
@@ -44,6 +44,37 @@ async function sendPasswordResetEmail(email, token) {
   </table>
 </body>
 </html>`
+
+    if (process.env.RESEND_API_KEY) {
+        if (!process.env.EMAIL_FROM) {
+            throw new Error('EMAIL_FROM must be configured when RESEND_API_KEY is set')
+        }
+
+        const response = await fetch('https://api.resend.com/emails', {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                from: process.env.EMAIL_FROM,
+                to: [email],
+                subject: 'Reset your 3D Discovery password',
+                text,
+                html
+            })
+        })
+
+        if (!response.ok) {
+            const responseBody = await response.text()
+            throw new Error(`Resend email request failed (${response.status}): ${responseBody}`)
+        }
+        return
+    }
+
+    if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
+        throw new Error('Configure RESEND_API_KEY and EMAIL_FROM, or SMTP_HOST, SMTP_USER, and SMTP_PASS')
+    }
 
     await transporter.sendMail({
         from: {
